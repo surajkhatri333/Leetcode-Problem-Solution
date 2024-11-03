@@ -1,45 +1,29 @@
 import java.util.*;
 public class main {
 
-    public static  int sumSubarrayMins(int[] arr) {
-        ArrayList<ArrayList<Integer>> listoflist = new  ArrayList<>();
+    public static boolean rotateString(String s, String goal) {
+        if(s.length() != goal.length()) return false;
 
-
-        int sum = 0;
-        for(int i = 0; i < arr.length; i++){
-            Stack<Integer> stack = new Stack<>();
-            int min = Integer.MAX_VALUE;
-            for(int j = i; j < arr.length; j++){
-
-                    min = Math.min(min,arr[j]);
-                    stack.push(min);
-                    sum += min;
-//                ArrayList<Integer> list = new ArrayList<>();
-//                for(int k = i; k <= j; k++){
-//                    list.add(arr[k]);
-//                }
-//                listoflist.add(list);
-            }
+        StringBuilder sb = new StringBuilder(s);
+        int count = 0;
+        while(count < s.length()){
+//             sb.append(s.substring(1));
+//             sb.append(sb.deleteCharAt(0));
+            sb.replace(0,sb.length(),sb.substring(1));
+            sb.append(s.charAt(count));
+//            sb = s.substring(1);
+//            s += s.charAt(0);
+            System.out.println(sb);
+            count++;
+            String ss = sb.toString();
+            if(ss.contains(goal)) return true;
         }
-//        System.out.println(listoflist);
-//        System.out.println(list);
-
-//        int minSum = 0;
-//
-//        for(ArrayList<Integer> innerList : listoflist){
-//            int min =  Collections.min(innerList);
-//            minSum += min;
-//        }
-        return sum;
+        return false;
     }
-
     public static void main(String[] args){
-        String sentence = "leetcode exercises sound delightful";
-        String[] c = sentence.split(" ");
-        for(int i = 0; i < c.length; i++){
-            System.out.print(c[i] + " ");
-        }
-        System.out.println(c.length);
+        String s = "abcde";
+        String goal = "cdeab";
+        System.out.println(rotateString(s,goal));
 
     }
 }
